@@ -13,7 +13,7 @@ func main() {
 		c.JSON(200, gin.H{"Message": "This is test"})
 	})
 	r.GET("/webhook", func(c *gin.Context) {
-		log.Println("Inside Get")
+		log.Println("Inside Get, Token: ", []byte(c.Query("hub.challenge")))
 		c.JSON(200, []byte(c.Query("hub.challenge")))
 	})
 	r.POST("/webhook", func(c *gin.Context) {
