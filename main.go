@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"log"
+	"strconv"
 )
 
 func main() {
@@ -13,8 +14,13 @@ func main() {
 		c.JSON(200, gin.H{"Message": "This is test"})
 	})
 	r.GET("/webhook", func(c *gin.Context) {
-		log.Println("Inside Get, Token: ", []byte(c.Query("hub.challenge")))
-		c.JSON(200, []byte(c.Query("hub.challenge")))
+		query := c.Query("hub.challenge")
+		log.Println("Inside Get, Token: ", query)
+		intVar, err := strconv.ParseInt(query, 0, 64)
+		if err != nil {
+			log.Println("Error: ", err)
+		}
+		c.JSON(200, intVar)
 	})
 	r.POST("/webhook", func(c *gin.Context) {
 		jsonData, err := ioutil.ReadAll(c.Request.Body)
