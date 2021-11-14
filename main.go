@@ -28,7 +28,7 @@ func main() {
 		log.Println("Inside Home")
 		c.JSON(200, gin.H{"Message": "This is Home"})
 	})
-	err := r.Run(":8008")
+	err := r.Run()
 	if err != nil {
 		return
 	}
