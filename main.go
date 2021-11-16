@@ -63,6 +63,7 @@ func main() {
 	})
 	r.POST("/webhook", func(c *gin.Context) {
 		var requestBody MessageObject
+		log.Println("Inside Webhook post")
 		//buf := new(bytes.Buffer)
 		//buf.ReadFrom(c.Request.Body)
 		//str := buf.String()
