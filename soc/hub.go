@@ -43,7 +43,7 @@ func (subscription Subscription) readPump() {
 	for {
 		data := <-subscription.data
 		subscription.roomId = data.RoomId
-		message := []byte(data.Data)
+		message := data.Data
 		newMessage := Message{bytes.TrimSpace(bytes.Replace(message, newline, space, -1)), subscription.roomId}
 		c.hub.broadcast <- newMessage
 	}
