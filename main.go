@@ -108,7 +108,7 @@ func main() {
 		roomId := c.Param("roomId")
 		soc.ServeWs(hub, c.Writer, c.Request, roomId, dataChan)
 	})
-	err := r.Run(":8008")
+	err := r.Run()
 	if err != nil {
 		return
 	}
